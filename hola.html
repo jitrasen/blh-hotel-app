@@ -1,0 +1,193 @@
+import React, { useState, useEffect } from 'react';
+
+// Main App component
+const App = () => {
+    const [birthDay, setBirthDay] = useState('');
+    const [birthMonth, setBirthMonth] = useState('');
+    const [birthYearBE, setBirthYearBE] = useState(''); // Buddhist Era
+    const [generalFortune, setGeneralFortune] = useState('');
+    const [monthlyFortune, setMonthlyFortune] = useState('');
+    const [luckyNumbers, setLuckyNumbers] = useState([]);
+    const [currentMonthName, setCurrentMonthName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    // Function to get Thai month name
+    const getThaiMonthName = (monthIndex) => {
+        const thaiMonths = [
+            'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+            'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+        ];
+        return thaiMonths[monthIndex];
+    };
+
+    useEffect(() => {
+        const today = new Date();
+        setCurrentMonthName(getThaiMonthName(today.getMonth()));
+    }, []);
+
+    // Simplified fortune telling logic (for demonstration purposes only)
+    const predictFortune = () => {
+        setErrorMessage(''); // Clear previous errors
+
+        const day = parseInt(birthDay);
+        const month = parseInt(birthMonth);
+        const yearBE = parseInt(birthYearBE);
+
+        if (isNaN(day) || isNaN(month) || isNaN(yearBE) || day < 1 || day > 31 || month < 1 || month > 12 || yearBE < 2400 || yearBE > 2600) {
+            setErrorMessage('กรุณาป้อนข้อมูล วัน เดือน ปีเกิด ให้ถูกต้อง (ปี พ.ศ. อยู่ในช่วง 2400-2600)');
+            setGeneralFortune('');
+            setMonthlyFortune('');
+            setLuckyNumbers([]);
+            return;
+        }
+
+        // General Fortune (simplified based on birth year)
+        let general = '';
+        const yearMod = yearBE % 10;
+        if (yearMod === 0 || yearMod === 5) {
+            general = 'ดวงชะตาโดยรวมดี มีความก้าวหน้าในชีวิต';
+        } else if (yearMod === 1 || yearMod === 6) {
+            general = 'ดวงชะตาโดยรวมปานกลาง ต้องใช้ความพยายามจึงจะสำเร็จ';
+        } else if (yearMod === 2 || yearMod === 7) {
+            general = 'ดวงชะตาโดยรวมแข็งแกร่ง มีอุปสรรคบ้างแต่จะผ่านพ้นไปได้';
+        } else if (yearMod === 3 || yearMod === 8) {
+            general = 'ดวงชะตาโดยรวมมีโชคลาภ แต่ต้องระวังเรื่องสุขภาพ';
+        } else { // 4, 9
+            general = 'ดวงชะตาโดยรวมมีความสุขสบาย มีผู้ใหญ่คอยอุปถัมภ์';
+        }
+        setGeneralFortune(general);
+
+        // Monthly Fortune (simplified based on birth month and current month)
+        const currentMonthIndex = new Date().getMonth() + 1; // 1-12
+        let monthly = '';
+        if ((month + currentMonthIndex) % 3 === 0) {
+            monthly = 'ในเดือนนี้มีเกณฑ์ได้รับข่าวดีเรื่องงานหรือการเงิน';
+        } else if ((month + currentMonthIndex) % 3 === 1) {
+            monthly = 'ในเดือนนี้ควรระวังเรื่องสุขภาพและการเดินทาง';
+        } else {
+            monthly = 'ในเดือนนี้มีโอกาสได้พบปะผู้คนใหม่ๆ และมีโชคจากคนใกล้ชิด';
+        }
+        setMonthlyFortune(monthly);
+
+        // Lucky Numbers (simplified random generation)
+        const numbers = [];
+        for (let i = 0; i < 3; i++) {
+            numbers.push(Math.floor(Math.random() * 90) + 10); // 10-99
+        }
+        setLuckyNumbers(numbers);
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-purple-100 to-blue-200 flex items-center justify-center p-4 font-inter">
+            <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
+                <h1 className="text-3xl font-bold text-center text-purple-800 mb-6">
+                    <span role="img" aria-label="star" className="mr-2">✨</span>
+                    แอปผูกดวง โหราศาสตร์ไทย
+                    <span role="img" aria-label="star" className="ml-2">✨</span>
+                </h1>
+
+                <div className="mb-6">
+                    <label htmlFor="birthDay" className="block text-gray-700 text-sm font-semibold mb-2">
+                        วันเกิด:
+                    </label>
+                    <input
+                        type="number"
+                        id="birthDay"
+                        className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                        placeholder="เช่น 15"
+                        value={birthDay}
+                        onChange={(e) => setBirthDay(e.target.value)}
+                        min="1"
+                        max="31"
+                    />
+                </div>
+
+                <div className="mb-6">
+                    <label htmlFor="birthMonth" className="block text-gray-700 text-sm font-semibold mb-2">
+                        เดือนเกิด:
+                    </label>
+                    <input
+                        type="number"
+                        id="birthMonth"
+                        className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                        placeholder="เช่น 1 (มกราคม)"
+                        value={birthMonth}
+                        onChange={(e) => setBirthMonth(e.target.value)}
+                        min="1"
+                        max="12"
+                    />
+                </div>
+
+                <div className="mb-8">
+                    <label htmlFor="birthYearBE" className="block text-gray-700 text-sm font-semibold mb-2">
+                        ปีเกิด (พ.ศ.):
+                    </label>
+                    <input
+                        type="number"
+                        id="birthYearBE"
+                        className="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                        placeholder="เช่น 2522"
+                        value={birthYearBE}
+                        onChange={(e) => setBirthYearBE(e.target.value)}
+                        min="2400"
+                        max="2600"
+                    />
+                </div>
+
+                {errorMessage && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-6" role="alert">
+                        <strong className="font-bold">ข้อผิดพลาด:</strong>
+                        <span className="block sm:inline ml-2">{errorMessage}</span>
+                    </div>
+                )}
+
+                <button
+                    onClick={predictFortune}
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 transition duration-300 transform hover:scale-105 shadow-lg"
+                >
+                    <span role="img" aria-label="crystal ball" className="mr-2">🔮</span>
+                    ทํานายดวงชะตา
+                </button>
+
+                {(generalFortune || monthlyFortune || luckyNumbers.length > 0) && (
+                    <div className="mt-8 pt-8 border-t-2 border-purple-200">
+                        <h2 className="text-2xl font-bold text-center text-purple-700 mb-4">
+                            ผลการทำนาย
+                        </h2>
+                        {generalFortune && (
+                            <div className="bg-purple-50 p-4 rounded-lg mb-4 shadow-md">
+                                <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                                    <span role="img" aria-label="sparkles" className="mr-2">✨</span>
+                                    ดวงชะตาคร่าวๆ:
+                                </h3>
+                                <p className="text-gray-800">{generalFortune}</p>
+                            </div>
+                        )}
+                        {monthlyFortune && (
+                            <div className="bg-purple-50 p-4 rounded-lg mb-4 shadow-md">
+                                <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                                    <span role="img" aria-label="calendar" className="mr-2">🗓️</span>
+                                    ดวงชะตาในเดือน {currentMonthName}:
+                                </h3>
+                                <p className="text-gray-800">{monthlyFortune}</p>
+                            </div>
+                        )}
+                        {luckyNumbers.length > 0 && (
+                            <div className="bg-purple-50 p-4 rounded-lg shadow-md">
+                                <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                                    <span role="img" aria-label="clover" className="mr-2">🍀</span>
+                                    เลขนำโชคในเดือน {currentMonthName}:
+                                </h3>
+                                <p className="text-gray-800 text-xl font-bold">
+                                    {luckyNumbers.join(', ')}
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default App;
