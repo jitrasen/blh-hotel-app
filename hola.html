@@ -225,6 +225,53 @@
             }
         }
 
+        // Hardcoded general fortune predictions
+        const generalFortunes = [
+            "โดยรวมแล้วชีวิตคุณมีแนวโน้มที่ดี มีความมั่นคงและก้าวหน้าในหน้าที่การงาน",
+            "คุณเป็นคนมีเสน่ห์และเป็นที่รักของผู้คน ความสัมพันธ์ราบรื่นดี",
+            "สุขภาพแข็งแรงดี มีพลังงานในการทำสิ่งต่างๆ แต่ควรระวังเรื่องความเครียด",
+            "การเงินอยู่ในเกณฑ์ดี มีโอกาสได้ลาภลอย หรือมีรายได้พิเศษเข้ามา",
+            "คุณมีความคิดสร้างสรรค์และมีไหวพริบดี เหมาะกับการทำงานที่ใช้ความคิด",
+            "ชีวิตคุณกำลังจะมีการเปลี่ยนแปลงครั้งสำคัญไปในทางที่ดีขึ้น",
+            "คุณเป็นคนใจดีและชอบช่วยเหลือผู้อื่น ทำให้มีคนรักใคร่และสนับสนุน",
+            "มีโอกาสได้เดินทางไกล หรือได้เรียนรู้สิ่งใหม่ๆ ที่เป็นประโยชน์ต่อชีวิต",
+            "ควรระวังเรื่องการตัดสินใจที่หุนหันพลันแล่น ควรคิดให้รอบคอบก่อนลงมือทำ",
+            "คุณมีดวงอุปถัมภ์ มีผู้ใหญ่คอยให้ความช่วยเหลือและสนับสนุน"
+        ];
+
+        // Hardcoded monthly fortune predictions
+        const monthlyFortunes = [
+            "เดือนนี้การงานโดดเด่น มีโอกาสได้แสดงฝีมือและได้รับการยอมรับ",
+            "การเงินคล่องตัว มีรายรับเข้ามาไม่ขาดสาย แต่ก็มีรายจ่ายที่ต้องระวัง",
+            "ความรักสดใส คนโสดมีโอกาสพบเจอคนถูกใจ คนมีคู่ความสัมพันธ์แน่นแฟ้น",
+            "สุขภาพแข็งแรงดี แต่ควรดูแลเรื่องอาหารการกินและพักผ่อนให้เพียงพอ",
+            "เดือนนี้มีเกณฑ์เดินทางไกล หรือมีเรื่องให้ต้องย้ายที่อยู่ชั่วคราว",
+            "ระวังเรื่องคำพูดและการสื่อสาร อาจเกิดความเข้าใจผิดได้ง่าย",
+            "มีโอกาสได้เรียนรู้ทักษะใหม่ๆ หรือพัฒนาตัวเองในด้านที่สนใจ",
+            "ควรระวังเรื่องอุบัติเหตุเล็กๆ น้อยๆ หรือการเจ็บป่วยที่ไม่คาดคิด",
+            "เดือนนี้เหมาะกับการเริ่มต้นสิ่งใหม่ๆ หรือลงทุนในสิ่งที่สนใจ",
+            "คุณจะได้รับข่าวดีหรือมีเรื่องน่ายินดีเข้ามาในชีวิต"
+        ];
+
+        // Function to get a random prediction from an array
+        function getRandomPrediction(predictionsArray) {
+            const randomIndex = Math.floor(Math.random() * predictionsArray.length);
+            return predictionsArray[randomIndex];
+        }
+
+        // Function to generate three random lucky numbers (00-99)
+        function generateLuckyNumbers() {
+            const numbers = [];
+            while (numbers.length < 3) {
+                const randomNumber = Math.floor(Math.random() * 100); // 0-99
+                const formattedNumber = String(randomNumber).padStart(2, '0'); // Add leading zero if single digit
+                if (!numbers.includes(formattedNumber)) { // Ensure unique numbers
+                    numbers.push(formattedNumber);
+                }
+            }
+            return numbers.join(', ');
+        }
+
         document.getElementById('predictBtn').addEventListener('click', async () => {
             const birthDay = document.getElementById('birthDay').value;
             const birthMonth = document.getElementById('birthMonth').value;
@@ -256,72 +303,31 @@
                 return;
             }
 
+            // Simulate loading (optional, but keeps the spinner for a moment)
             loadingSpinner.style.display = 'block';
             predictBtn.disabled = true;
             predictBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            try {
-                const currentMonthName = new Date().toLocaleString('th-TH', { month: 'long' });
+            // Generate predictions and lucky numbers locally
+            const generalFortuneResult = getRandomPrediction(generalFortunes);
+            const monthlyFortuneResult = getRandomPrediction(monthlyFortunes);
+            const luckyNumbers = generateLuckyNumbers();
 
-                // Construct prompts for the Gemini API
-                const generalFortunePrompt = `Generate a general fortune prediction for someone born on ${day} ${getMonthName(month)} ${yearBE} (Buddhist Era). Make it diverse, covering aspects like career, finance, health, and relationships. Respond in Thai.`;
-                const monthlyFortunePrompt = `Generate a monthly fortune prediction for the current month (${currentMonthName}) for someone born on ${day} ${getMonthName(month)} ${yearBE} (Buddhist Era). Make it diverse, covering aspects like career, finance, health, and relationships. Respond in Thai.`;
-                const luckyNumberPrompt = `Generate a single lucky number for the current month (${currentMonthName}) for someone born on ${day} ${getMonthName(month)} ${yearBE} (Buddhist Era). Respond with only the number.`;
+            // Simulate a short delay to show the spinner (optional)
+            await new Promise(resolve => setTimeout(resolve, 500));
 
-                // Fetch general fortune
-                const generalFortuneResult = await callGeminiAPI(generalFortunePrompt);
-                document.getElementById('generalFortune').textContent = generalFortuneResult;
+            document.getElementById('generalFortune').textContent = generalFortuneResult;
+            document.getElementById('monthlyFortune').textContent = monthlyFortuneResult;
+            document.getElementById('luckyNumber').textContent = luckyNumbers;
 
-                // Fetch monthly fortune
-                const monthlyFortuneResult = await callGeminiAPI(monthlyFortunePrompt);
-                document.getElementById('monthlyFortune').textContent = monthlyFortuneResult;
+            resultsDiv.classList.remove('hidden');
 
-                // Fetch lucky number
-                const luckyNumberResult = await callGeminiAPI(luckyNumberPrompt);
-                document.getElementById('luckyNumber').textContent = luckyNumberResult;
-
-                resultsDiv.classList.remove('hidden');
-
-            } catch (error) {
-                console.error('Error fetching prediction:', error);
-                errorMessageElement.textContent = 'เกิดข้อผิดพลาดในการทํานายดวงชะตา กรุณาลองใหม่อีกครั้ง';
-                showModal('ขออภัย เกิดข้อผิดพลาดในการทํานายดวงชะตา กรุณาลองใหม่อีกครั้ง');
-            } finally {
-                loadingSpinner.style.display = 'none';
-                predictBtn.disabled = false;
-                predictBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
+            loadingSpinner.style.display = 'none';
+            predictBtn.disabled = false;
+            predictBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         });
 
-        async function callGeminiAPI(prompt) {
-            let chatHistory = [];
-            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-            const payload = { contents: chatHistory };
-            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('API Error:', errorData);
-                throw new Error(`API request failed with status ${response.status}: ${errorData.error.message || 'Unknown error'}`);
-            }
-
-            const result = await response.json();
-            if (result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
-                return result.candidates[0].content.parts[0].text;
-            } else {
-                throw new Error('ไม่พบข้อมูลการทํานายที่ถูกต้องจาก API');
-            }
-        }
-
+        // This function is no longer used for predictions but kept for completeness if needed elsewhere.
         function getMonthName(monthNumber) {
             const monthNames = [
                 "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
