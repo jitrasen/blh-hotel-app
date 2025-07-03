@@ -91,7 +91,7 @@
 <body class="flex items-center justify-center min-h-screen p-4">
     <div class="container flex flex-col items-center">
         <h1 class="text-4xl md:text-5xl font-bold text-green-800 mb-6 text-center">
-            
+            BLH App
             <span class="block text-2xl md:text-3xl mt-2">Baan Luang Harn Hotel</span>
         </h1>
 
@@ -165,6 +165,15 @@
                     Walking Street (Bar)
                 </span>
             </button>
+            <!-- New 7-11 Button -->
+            <button id="sevenElevenBtn" class="button-style">
+                <span class="flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    7-11
+                </span>
+            </button>
         </div>
 
         <!-- Tuktuk, Taxi & Boat trip Category -->
@@ -205,6 +214,7 @@
         const walkinCafeBtn = document.getElementById('walkinCafeBtn');
         const walkingStreetLocalFoodBtn = document.getElementById('walkingStreetLocalFoodBtn');
         const walkingStreetBarBtn = document.getElementById('walkingStreetBarBtn');
+        const sevenElevenBtn = document.getElementById('sevenElevenBtn'); // New 7-11 button reference
         const messageBox = document.getElementById('messageBox');
         const priceInfoDiv = document.getElementById('priceInfo');
 
@@ -237,6 +247,10 @@
             walkingStreetBar: {
                 name: 'Walking Street (Bar)',
                 coords: '14.359134,100.577316'
+            },
+            sevenEleven: { // New 7-11 location
+                name: '7-11',
+                coords: '14.358593,100.572730'
             }
         };
 
@@ -274,6 +288,11 @@
 
         walkingStreetBarBtn.addEventListener('click', () => {
             navigateToLocation(locations.walkingStreetBar.name, locations.walkingStreetBar.coords);
+        });
+
+        // New event listener for 7-11 button
+        sevenElevenBtn.addEventListener('click', () => {
+            navigateToLocation(locations.sevenEleven.name, locations.sevenEleven.coords);
         });
 
         // Initial message box content
