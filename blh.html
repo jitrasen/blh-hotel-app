@@ -93,6 +93,17 @@
             text-align: center;
             width: 100%;
         }
+        /* New styles for improved price info section */
+        .price-item {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        .price-divider {
+            border-color: #6ee7b7; /* Light green for dividers */
+            border-width: 2px; /* Thicker divider */
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
@@ -189,23 +200,23 @@
         <h2 class="category-heading">บริการเดินทาง (Tuktuk, Taxi & Boat trip)</h2>
         <div id="priceInfo" class="price-info w-full max-w-2xl">
             <h3>Tuktuk Price</h3>
-            <p>1 Daytrip 08:00-18:00: <strong>200 Baht / Hour</strong></p>
-            <p>Bus Station: <strong>150 Baht</strong></p>
-            <p>Train Station: <strong>100 Baht</strong></p>
-            <hr class="my-4 border-green-300">
+            <p class="price-item">1 Daytrip 08:00-18:00: <strong>200 Baht / Hour</strong></p>
+            <p class="price-item">Bus Station: <strong>150 Baht</strong></p>
+            <p class="price-item">Train Station: <strong>100 Baht</strong></p>
+            <hr class="price-divider">
             <h3>Taxi</h3>
-            <p>Donmuang Airport: <strong>1,000 Baht</strong></p>
-            <p>Suvarnabhumi Airport: <strong>1,500 Baht</strong></p>
-            <p>Bangkok: <strong>1,300 Baht</strong></p>
-            <p>Pattaya: <strong>2,500 Baht</strong></p>
-            <p>Huahin: <strong>2,800 Baht</strong></p>
-            <p>Khaoyai: <strong>2,300 Baht</strong></p>
-            <p>Sukhothai: <strong>3,300 Baht</strong></p>
-            <p>Kanchanaburi: <strong>1,800 Baht</strong></p>
-            <hr class="my-4 border-green-300">
+            <p class="price-item">Donmuang Airport: <strong>1,000 Baht</strong></p>
+            <p class="price-item">Suvarnabhumi Airport: <strong>1,500 Baht</strong></p>
+            <p class="price-item">Bangkok: <strong>1,300 Baht</strong></p>
+            <p class="price-item">Pattaya: <strong>2,500 Baht</strong></p>
+            <p class="price-item">Huahin: <strong>2,800 Baht</strong></p>
+            <p class="price-item">Khaoyai: <strong>2,300 Baht</strong></p>
+            <p class="price-item">Sukhothai: <strong>3,300 Baht</strong></p>
+            <p class="price-item">Kanchanaburi: <strong>1,800 Baht</strong></p>
+            <hr class="price-divider">
             <h3>Boat Trip</h3>
-            <p><strong>200 Baht / Person</strong></p>
-            <p>15:50 From Baan Luang Harn</p>
+            <p class="price-item"><strong>200 Baht / Person</strong></p>
+            <p class="price-item">15:50 From Baan Luang Harn</p>
         </div>
 
         <!-- Message Box to display navigation status -->
