@@ -115,38 +115,8 @@
 
         <!-- Room Info & Reservation Category -->
         <h2 class="category-heading">ข้อมูลห้องพัก & จอง (Room Info & Reservation)</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-2xl mb-4">
-            <!-- Classic Villa Button -->
-            <button id="classicVillaBtn" class="button-style">
-                <span class="flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001 1h2a1 1 0 001-1m-6 0v-4a1 1 0 011-1h2a1 1 0 011 1v4m-6 0h6" />
-                    </svg>
-                    Classic Villa
-                </span>
-            </button>
-            <!-- Deluxe Button -->
-            <button id="deluxeBtn" class="button-style">
-                <span class="flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2 2m-2-2v4m-2 2h4M16 17v4m-2-2h4m-5-16l2 2m-2-2v4m-2 2h4" />
-                    </svg>
-                    Deluxe
-                </span>
-            </button>
-            <!-- Pool View Button -->
-            <button id="poolViewBtn" class="button-style">
-                <span class="flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    Pool View
-                </span>
-            </button>
-        </div>
-
-        <!-- Make a Reservation Button (full width) -->
         <div class="w-full max-w-2xl mb-6 flex flex-col items-center">
+            <!-- Make a Reservation Button (full width) -->
             <button id="makeReservationBtn" class="button-style">
                 <span class="flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -283,9 +253,9 @@
         const priceInfoDiv = document.getElementById('priceInfo');
 
         // New button references
-        const classicVillaBtn = document.getElementById('classicVillaBtn');
-        const deluxeBtn = document.getElementById('deluxeBtn');
-        const poolViewBtn = document.getElementById('poolViewBtn');
+        // const classicVillaBtn = document.getElementById('classicVillaBtn'); // Removed
+        // const deluxeBtn = document.getElementById('deluxeBtn'); // Removed
+        // const poolViewBtn = document.getElementById('poolViewBtn'); // Removed
         const makeReservationBtn = document.getElementById('makeReservationBtn');
 
         // Coordinates and map links for each location
@@ -370,18 +340,18 @@
             navigateToLocation(locations.sevenEleven.name, locations.sevenEleven.coords);
         });
 
-        // Event listeners for new buttons
-        classicVillaBtn.addEventListener('click', () => {
-            openExternalLink('https://www.facebook.com/media/set/?set=a.1203243556677319&type=3', 'กำลังเปิดข้อมูล Classic Villa...');
-        });
+        // Event listeners for new buttons (removed Classic Villa, Deluxe, Pool View)
+        // classicVillaBtn.addEventListener('click', () => { // Removed
+        //     openExternalLink('https://www.facebook.com/media/set/?set=a.1203243556677319&type=3', 'กำลังเปิดข้อมูล Classic Villa...');
+        // });
 
-        deluxeBtn.addEventListener('click', () => {
-            openExternalLink('https://www.facebook.com/media/set/?set=a.1203244370010571&type=3', 'กำลังเปิดข้อมูล Deluxe...');
-        });
+        // deluxeBtn.addEventListener('click', () => { // Removed
+        //     openExternalLink('https://www.facebook.com/media/set/?set=a.1203244370010571&type=3', 'กำลังเปิดข้อมูล Deluxe...');
+        // });
 
-        poolViewBtn.addEventListener('click', () => {
-            openExternalLink('https://www.facebook.com/media/set/?set=a.1203246133343728&type=3', 'กำลังเปิดข้อมูล Pool View...');
-        });
+        // poolViewBtn.addEventListener('click', () => { // Removed
+        //     openExternalLink('https://www.facebook.com/media/set/?set=a.1203246133343728&type=3', 'กำลังเปิดข้อมูล Pool View...');
+        // });
 
         makeReservationBtn.addEventListener('click', () => {
             openExternalLink('https://www.booking.com/hotel/th/baan-luang-harn.th.html?label=gen173nr-1BCAEoggI46AdIM1gEaN0BiAEBmAEmuAEXyAEM2AEB6AEBiAIBqAIDuALntpjDBsACAdICJDc4NjA0YmU0LTMzMzYtNDBjYi1hNzA1LTE5ZDI3ZDE1ZDliNNgCBeACAQ&sid=26e5bdda42e4e631b37a148af7c47ada&aid=304142&ucfs=1&arphpl=1', 'กำลังเปิดหน้าจองห้องพัก...');
