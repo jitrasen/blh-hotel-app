@@ -132,7 +132,7 @@
             <button id="blhHotelBtn" class="button-style">
                 <span class="flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.727A8 8 0 016.343 7.273L17.657 16.727zm0 0L19.5 18.5m-1.843-1.773a8.001 8 0 010-11.314A8 8 0 0117.657 16.727zM6.343 7.273L4.5 5.5m1.843 1.773a8.001 8.001 0 000 11.314A8.001 8.001 0 006.343 7.273z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.727A8 8 0 016.343 7.273L17.657 16.727zm0 0L19.5 18.5m-1.843-1.773a8.001 8.001 0 010-11.314A8 8 0 0117.657 16.727zM6.343 7.273L4.5 5.5m1.843 1.773a8.001 8.001 0 000 11.314A8.001 8.001 0 006.343 7.273z" />
                     </svg>
                     Go to Baan Luang Harn Hotel
                 </span>
@@ -210,23 +210,13 @@
             </button>
         </div>
 
-        <!-- Tuktuk, Taxi & Boat trip Category -->
-        <h2 class="category-heading">บริการเดินทาง (Tuktuk, Taxi & Boat trip)</h2>
+        <!-- Tuktuk & Boat trip Category -->
+        <h2 class="category-heading">บริการเดินทาง (Tuktuk & Boat trip)</h2>
         <div id="priceInfo" class="price-info w-full max-w-2xl">
             <h3>Tuktuk Price</h3>
             <p class="price-item">1 Daytrip 08:00-18:00: <strong>200 Baht / Hour</strong></p>
             <p class="price-item">Bus Station: <strong>150 Baht</strong></p>
             <p class="price-item">Train Station: <strong>100 Baht</strong></p>
-            <hr class="price-divider">
-            <h3>Taxi</h3>
-            <p class="price-item">Donmuang Airport: <strong>1,000 Baht</strong></p>
-            <p class="price-item">Suvarnabhumi Airport: <strong>1,500 Baht</strong></p>
-            <p class="price-item">Bangkok: <strong>1,300 Baht</strong></p>
-            <p class="price-item">Pattaya: <strong>2,500 Baht</strong></p>
-            <p class="price-item">Huahin: <strong>2,800 Baht</strong></p>
-            <p class="price-item">Khaoyai: <strong>2,300 Baht</strong></p>
-            <p class="price-item">Sukhothai: <strong>3,300 Baht</strong></p>
-            <p class="price-item">Kanchanaburi: <strong>1,800 Baht</strong></p>
             <hr class="price-divider">
             <h3>Boat Trip</h3>
             <p class="price-item"><strong>200 Baht / Person</strong></p>
@@ -253,9 +243,6 @@
         const priceInfoDiv = document.getElementById('priceInfo');
 
         // New button references
-        // const classicVillaBtn = document.getElementById('classicVillaBtn'); // Removed
-        // const deluxeBtn = document.getElementById('deluxeBtn'); // Removed
-        // const poolViewBtn = document.getElementById('poolViewBtn'); // Removed
         const makeReservationBtn = document.getElementById('makeReservationBtn');
 
         // Coordinates and map links for each location
@@ -339,19 +326,6 @@
         sevenElevenBtn.addEventListener('click', () => {
             navigateToLocation(locations.sevenEleven.name, locations.sevenEleven.coords);
         });
-
-        // Event listeners for new buttons (removed Classic Villa, Deluxe, Pool View)
-        // classicVillaBtn.addEventListener('click', () => { // Removed
-        //     openExternalLink('https://www.facebook.com/media/set/?set=a.1203243556677319&type=3', 'กำลังเปิดข้อมูล Classic Villa...');
-        // });
-
-        // deluxeBtn.addEventListener('click', () => { // Removed
-        //     openExternalLink('https://www.facebook.com/media/set/?set=a.1203244370010571&type=3', 'กำลังเปิดข้อมูล Deluxe...');
-        // });
-
-        // poolViewBtn.addEventListener('click', () => { // Removed
-        //     openExternalLink('https://www.facebook.com/media/set/?set=a.1203246133343728&type=3', 'กำลังเปิดข้อมูล Pool View...');
-        // });
 
         makeReservationBtn.addEventListener('click', () => {
             openExternalLink('https://www.booking.com/hotel/th/baan-luang-harn.th.html?label=gen173nr-1BCAEoggI46AdIM1gEaN0BiAEBmAEmuAEXyAEM2AEB6AEBiAIBqAIDuALntpjDBsACAdICJDc4NjA0YmU0LTMzMzYtNDBjYi1hNzA1LTE5ZDI3ZDE1ZDliNNgCBeACAQ&sid=26e5bdda42e4e631b37a148af7c47ada&aid=304142&ucfs=1&arphpl=1', 'กำลังเปิดหน้าจองห้องพัก...');
