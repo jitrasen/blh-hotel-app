@@ -104,6 +104,47 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
+        .house-rules-section {
+            background-color: #f0fff0; /* Consistent with other info sections */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-top: 1.5rem;
+            color: #065f46; /* Darker green for text */
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+            width: 100%;
+            max-width: 2xl;
+        }
+        .house-rules-section h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            color: #047857; /* Green-800 */
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+        .house-rules-section ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .house-rules-section ul li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem; /* Indent for custom bullet */
+        }
+        .house-rules-section ul li:before {
+            content: "•"; /* Custom bullet point */
+            color: #16a34a; /* Green-700 */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .penalty-fee {
+            color: #ef4444; /* Red-500 */
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
@@ -116,6 +157,10 @@
         <!-- Room Info & Reservation Category -->
         <h2 class="category-heading">ข้อมูลห้องพัก & จอง (Room Info & Reservation)</h2>
         <div class="w-full max-w-2xl mb-6 flex flex-col items-center space-y-4">
+            <!-- Wifi Password Text -->
+            <p class="text-blue-700 font-semibold text-lg text-center mb-2">
+                Wifi Password : BLH12345 (BLH is Capital Letter)
+            </p>
             <!-- Make a Reservation Button (full width) -->
             <button id="makeReservationBtn" class="button-style">
                 <span class="flex items-center justify-center">
@@ -240,6 +285,51 @@
             <h3>Boat Trip</h3>
             <p class="price-item"><strong>250 Baht / Person</strong></p>
             <p class="price-item">15:30 From Baan Luang Harn</p>
+        </div>
+
+        <!-- Hotel House Rules Section -->
+    
+        <div class="house-rules-section w-full max-w-2xl">
+            <h3>Baan Luang Harn  Hotel Rules</h3>
+            <p class="mb-4">For the safety and comfort of all guests, please kindly observe the following regulations:</p>
+            <ul>
+                <li>
+                    <strong>No Smoking in Guest Rooms and Designated Non-Smoking Areas:</strong> A penalty fee of <span class="penalty-fee">2,000 THB</span> will be charged for any violations.
+                </li>
+                <li>
+                    <strong>No Cooking or Use of Potentially Hazardous Electrical Appliances:</strong> This includes items such as electric stoves or hot pots. Exceptions apply only to coffee/tea making facilities provided by the hotel. (A penalty fee of <span class="penalty-fee">2,000 THB</span>)
+                </li>
+                <li>
+                    <strong>Do Not Move, Alter, or Remove Hotel Property:</strong> Guests will be held responsible for any damage or loss of hotel property and will be required to compensate for actual damages incurred.
+                </li>
+                <li>
+                    <strong>No Loud Noise or Disturbance to Other Guests:</strong> This applies especially between 10:00 PM and 8:00 AM.
+                </li>
+                <li>
+                    <strong>No Pets Allowed on Hotel Premises:</strong> Exceptions are made only with prior special permission from the hotel. (A penalty fee of <span class="penalty-fee">2,000 THB</span>)
+                </li>
+                <li>
+                    <strong>No Gambling or Illegal Activities of any kind on Hotel Premises.</strong>
+                </li>
+                <li>
+                    <strong>No Weapons, Illegal Drugs, or Hazardous Materials of any kind on Hotel Premises.</strong>
+                </li>
+                <li>
+                    <strong>No Installation of Mosquito Nets or Other Insect Repellent Devices that May Damage Hotel Property:</strong> This includes drilling into walls for hanging, hanging from light fixtures, or tying. (A penalty fee of <span class="penalty-fee">2,000 THB</span>)
+                </li>
+                <li>
+                    <strong>Do Not Dispose of Rubbish, Waste, or Any Items in Toilets or Non-Designated Bins:</strong> Please use the provided rubbish bins.
+                </li>
+                <li>
+                    <strong>No Strong-Smelling Foods in Guest Rooms:</strong> This includes items like durian or certain seafood, to maintain the room's freshness and prevent lingering odors. (A penalty fee of <span class="penalty-fee">2,000 THB</span>)
+                </li>
+                <li>
+                    <strong>No Unregistered Outside Guests Allowed in Rooms After Designated Hours:</strong> (e.g., 10:00 PM or according to hotel policy) This is for the safety and privacy of all registered guests.
+                </li>
+                <li>
+                    <strong>In Case of Emergency:</strong> In the event of a fire or any other emergency, please strictly follow the instructions of hotel staff.
+                </li>
+            </ul>
         </div>
 
         <!-- Message Box to display navigation status -->
