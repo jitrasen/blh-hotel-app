@@ -62,7 +62,7 @@
             justify-content: center;
             word-break: break-word; /* Ensure long text wraps */
         }
-        .price-info {
+        .info-section { /* Generic style for info blocks like price and festivals */
             background-color: #f0fff0; /* Slightly lighter green for content area */
             padding: 1.5rem;
             border-radius: 0.75rem;
@@ -76,14 +76,14 @@
             width: 100%;
             max-width: 2xl; /* Match button grid width */
         }
-        .price-info h3 {
+        .info-section h3 {
             font-size: 1.5rem; /* text-2xl */
             font-weight: 700; /* font-bold */
             color: #047857; /* Green-800 */
             margin-bottom: 0.75rem;
             text-align: center;
         }
-        .price-info strong {
+        .info-section strong {
             color: #065f46; /* Darker green for bold text */
         }
         .emergency-call-text {
@@ -266,9 +266,18 @@
             </button>
         </div>
 
+        <!-- Important events and festivals section -->
+        <h2 class="category-heading">กิจกรรมและเทศกาลสำคัญ (Important events and festivals)</h2>
+        <div class="info-section w-full max-w-2xl">
+            <h3>Tanabata Festival 2025 at Japanese Village, Ayutthaya:</h3>
+            <p class="mb-2"><strong>Date:</strong> July 10-13, 2025</p>
+            <p class="mb-2"><strong>Location:</strong> Japanese Village, Ayutthaya is a village where ancient Japanese people came to live hundreds of years ago.</p>
+            <p><strong>Highlights:</strong> It is a celebration of beautiful Japanese culture. There are activities such as writing wishes on Tanzaku paper and hanging them on bamboo trees, coloring activities, and authentic Japanese food, as well as various cultural performances.</p>
+        </div>
+
         <!-- Tuktuk & Boat trip Category -->
         <h2 class="category-heading">บริการเดินทาง (Tuktuk & Boat trip)</h2>
-        <div id="priceInfo" class="price-info w-full max-w-2xl">
+        <div id="priceInfo" class="info-section w-full max-w-2xl">
             <h3>Tuktuk Price</h3>
             <p class="price-item">1 Daytrip 08:00-18:00: <strong>200 Baht / Hour</strong></p>
             <p class="price-item">Bus Station: <strong>150 Baht</strong></p>
@@ -280,7 +289,6 @@
         </div>
 
         <!-- Hotel House Rules Section -->
-       
         <div class="house-rules-section w-full max-w-2xl">
             <h3>Baan Luang Harn Hotel Rules</h3>
             <p class="mb-4">For the safety and comfort of all guests, please kindly observe the following regulations:</p>
