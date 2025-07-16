@@ -145,19 +145,10 @@
             color: #ef4444; /* Red-500 */
             font-weight: 700;
         }
-        /* Style for the hit counter */
-        #hitCounterContainer {
-            margin-top: 2rem; /* Add some space above the counter */
-            text-align: center; /* Center the counter */
-            width: 100%; /* Ensure it takes full width */
-            max-width: 2xl; /* Match other sections' max-width */
-            display: flex; /* Use flexbox to center content */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            padding: 1rem; /* Add some padding */
-            background-color: #f0fff0; /* Consistent background */
-            border-radius: 0.75rem; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        /* Styles for the AI assistant input/output */
+        #aiQuestionInput {
+            min-height: 80px; /* Minimum height for textarea */
+            resize: vertical; /* Allow vertical resizing */
         }
     </style>
 </head>
@@ -199,6 +190,23 @@
             </button>
             <!-- Emergency Call Text -->
             <p class="emergency-call-text">Emergency Call +66 86 024 1147 , +66 62 396 6293 , +66 87 072 1657</p>
+        </div>
+
+        <!-- New LLM Feature Section - Moved to new position -->
+        <h2 class="category-heading mt-8">✨ Ask Ayutthaya AI Assistant ✨</h2>
+        <div class="info-section w-full max-w-2xl flex flex-col items-center">
+            <textarea id="aiQuestionInput" class="w-full p-4 rounded-lg border-2 border-green-300 focus:outline-none focus:border-green-500 mb-4 text-gray-800" rows="4" placeholder="Ask about tourist attractions, restaurants, or other information in Ayutthaya..."></textarea>
+            <button id="askAiBtn" class="button-style w-full max-w-xs">
+                <span class="flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 17.29a3 3 0 114.242 0M10.5 14.25a.75.75 0 00-.75-.75H8.25a.75.75 0 00-.75.75V15a.75.75 0 00.75.75h1.5a.75.75 0 00.75-.75v-.75zM15.75 14.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 00-.75.75V15a.75.75 0 00.75.75h1.5a.75.75 0 00.75-.75v-.75zM12 21a9 9 0 110-18 9 9 0 010 18z" />
+                    </svg>
+                    Ask AI ✨
+                </span>
+            </button>
+            <div id="aiResponse" class="message-box w-full mt-4">
+                <p>คำตอบจาก AI จะแสดงที่นี่</p>
+            </div>
         </div>
 
         <!-- Travel Category -->
@@ -329,14 +337,7 @@
 
         <!-- Message Box to display navigation status -->
         <div id="messageBox" class="message-box w-full max-w-2xl mt-6">
-            <p>กดปุ่มเพื่อนำทาง หรือดูข้อมูล</p>
-        </div>
-
-        <!-- Hit Counter Section -->
-        <div id="hitCounterContainer" class="w-full max-w-2xl">
-            <div id="sfc2f4qbjym953pzfwkagwak53dm968ewxa"></div>
-            <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=2f4qbjym953pzfwkagwak53dm968ewxa&down=async" async></script>
-            <noscript><a href="https://www.freecounterstat.com" title="free hit counter"><img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=2f4qbjym953pzfwkagwak53dm968ewxa" border="0" title="free hit counter" alt="free hit counter"></a></noscript>
+            <p>Press the button to navigate or view information.</p>
         </div>
 
     </div>
@@ -357,6 +358,12 @@
         // New button references
         const ayutthayaMapBtn = document.getElementById('ayutthayaMapBtn'); // New button reference
         const ayutthayaGuidebookBtn = document.getElementById('ayutthayaGuidebookBtn'); // New button reference
+
+        // New AI assistant elements
+        const aiQuestionInput = document.getElementById('aiQuestionInput');
+        const askAiBtn = document.getElementById('askAiBtn');
+        const aiResponseDiv = document.getElementById('aiResponse');
+
 
         // Coordinates and map links for each location
         const locations = {
@@ -449,6 +456,46 @@
         // Updated Ayutthaya Guidebook Button
         ayutthayaGuidebookBtn.addEventListener('click', () => {
             openExternalLink('https://drive.google.com/file/d/1VsweyITog0F2W7-ZM4rBfDDXmpllaFen/view?usp=drive_link', 'กำลังเปิดคู่มือท่องเที่ยวอยุธยา (PDF)...');
+        });
+
+        // Event listener for AI assistant button
+        askAiBtn.addEventListener('click', async () => {
+            const prompt = aiQuestionInput.value.trim();
+            if (!prompt) {
+                aiResponseDiv.innerHTML = '<p style="color: #ef4444;">Please type your question first.</p>'; // Changed to English
+                return;
+            }
+
+            aiResponseDiv.innerHTML = '<p>Thinking of an answer... ✨</p>'; // Loading indicator
+
+            let chatHistory = [];
+            // Instruct the AI to act as a helpful Ayutthaya travel assistant
+            chatHistory.push({ role: "user", parts: [{ text: `You are a helpful travel assistant for a hotel in Ayutthaya. Please answer questions about Ayutthaya in a friendly and informative manner. If the question is not related to Ayutthaya or travel, respond that you cannot provide information: ${prompt}` }] }); // Prompt updated for English context
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // API key will be provided by Canvas runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    aiResponseDiv.innerHTML = `<p>${text}</p>`;
+                } else {
+                    aiResponseDiv.innerHTML = '<p style="color: #ef4444;">Sorry, I cannot generate a response at this time. Please try again.</p>'; // Changed to English
+                    console.error("Gemini API response structure unexpected:", result);
+                }
+            } catch (error) {
+                aiResponseDiv.innerHTML = '<p style="color: #ef4444;">An error occurred during connection. Please try again.</p>'; // Changed to English
+                console.error("Error calling Gemini API:", error);
+            }
         });
 
         // Initial message box content
