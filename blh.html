@@ -145,39 +145,28 @@
             color: #ef4444; /* Red-500 */
             font-weight: 700;
         }
-        /* Styles for the AI assistant input/output */
-        #aiQuestionInput {
-            min-height: 80px; /* Minimum height for textarea */
-            resize: vertical; /* Allow vertical resizing */
-        }
-        .ai-response-box {
-            background-color: #ecfdf5; /* Lightest green for AI response */
-            color: #065f46; /* Darker green for AI text */
-            padding: 1rem;
-            border-radius: 0.75rem;
+        /* New styles for the taxi table */
+        .taxi-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 1rem;
-            font-size: 1rem;
+            font-size: 0.9rem;
+        }
+        .taxi-table th, .taxi-table td {
+            border: 1px solid #a7f3d0; /* Green-200 */
+            padding: 0.75rem;
             text-align: left;
-            min-height: 6rem; /* Ensure a minimum height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            word-break: break-word;
-            white-space: pre-wrap; /* Preserve formatting from AI response */
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle inner shadow */
         }
-        .loader {
-            border: 4px solid #f3f3f3; /* Light grey */
-            border-top: 4px solid #10b981; /* Green */
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
+        .taxi-table th {
+            background-color: #d1fae5; /* Green-50 */
+            font-weight: 600;
+            color: #065f46; /* Darker green */
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .taxi-table tr:nth-child(even) {
+            background-color: #f0fff0; /* Slightly lighter green for rows */
+        }
+        .taxi-table td:last-child {
+            text-align: right; /* Align prices to the right */
         }
     </style>
 </head>
@@ -219,23 +208,6 @@
             </button>
             <!-- Emergency Call Text -->
             <p class="emergency-call-text">Emergency Call +66 86 024 1147 , +66 62 396 6293 , +66 87 072 1657</p>
-        </div>
-
-        <!-- AI Assistant Category -->
-        <h2 class="category-heading">BLH AI Assistant</h2>
-        <div class="w-full max-w-2xl mb-6 flex flex-col items-center space-y-4">
-            <textarea id="aiQuestionInput" class="w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-green-800 placeholder-green-400" placeholder="Ask me anything about Ayutthaya..."></textarea>
-            <button id="askAiBtn" class="button-style">
-                <span class="flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4.22 21.78l.707-.707M1.636 17.364l.707-.707M3 12H2m14.864-1.636l.707-.707M12 21v-1m-6.364-1.636l-.707.707M17 14H7m-4 0h14" />
-                    </svg>
-                    Ask AI
-                </span>
-            </button>
-            <div id="aiResponseBox" class="ai-response-box w-full">
-                <p>Your AI assistant is ready to help!</p>
-            </div>
         </div>
 
         <!-- Travel Category -->
@@ -320,6 +292,56 @@
             <p class="price-item">15:30 From Baan Luang Harn</p>
         </div>
 
+        <!-- Taxi Section -->
+        <h2 class="category-heading">Taxi Service</h2>
+        <div class="info-section w-full max-w-2xl">
+            <h3>Taxi Service Baan Luang Harn Guesthouse</h3>
+            <table class="taxi-table">
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Sedan</th>
+                        <th>SUV</th>
+                        <th>VIP Car</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Suvarnabhumi Airport</td><td>1,200</td><td>1,400</td><td>2,500</td></tr>
+                    <tr><td>Don Mueang Airport</td><td>800</td><td>1,000</td><td>2,000</td></tr>
+                    <tr><td>Suvarnabhumi (City)</td><td>1,000</td><td>1,200</td><td>2,500</td></tr>
+                    <tr><td>Ayutthaya (City)</td><td>1,000</td><td>1,200</td><td>2,500</td></tr>
+                    <tr><td>Pattaya</td><td>1,500</td><td>1,800</td><td>3,000</td></tr>
+                    <tr><td>Kanchanaburi</td><td>1,700</td><td>2,000</td><td>3,500</td></tr>
+                    <tr><td>Hua Hin</td><td>2,000</td><td>2,500</td><td>4,000</td></tr>
+                    <tr><td>Phuket</td><td>2,200</td><td>2,800</td><td>4,500</td></tr>
+                    <tr><td>Koh Lanta</td><td>2,700</td><td>3,000</td><td>5,000</td></tr>
+                    <tr><td>Krabi (City)</td><td>800</td><td>1,100</td><td>2,000</td></tr>
+                    <tr><td>Surat Thani (City)</td><td>3,800</td><td>4,200</td><td>6,500</td></tr>
+                    <tr><td>Nakhon Phanom</td><td>1,100</td><td>1,300</td><td>2,500</td></tr>
+                    <tr><td>Hat Yai (City)</td><td>4,200</td><td>4,600</td><td>7,000</td></tr>
+                    <tr><td>Chonburi (City)</td><td>1,300</td><td>1,600</td><td>3,000</td></tr>
+                    <tr><td>Rayong (City)</td><td>600</td><td>900</td><td>1,500</td></tr>
+                    <tr><td>Chanthaburi (City)</td><td>1,000</td><td>1,200</td><td>2,200</td></tr>
+                    <tr><td>Trat (City)</td><td>1,800</td><td>2,000</td><td>3,200</td></tr>
+                    <tr><td>Nakhon Nayok</td><td>1,900</td><td>2,200</td><td>3,500</td></tr>
+                    <tr><td>Nakhon Pathom</td><td>1,400</td><td>1,700</td><td>2,500</td></tr>
+                    <tr><td>Nakhon Ratchasima (City)</td><td>2,300</td><td>2,600</td><td>4,000</td></tr>
+                    <tr><td>Nakhon Sawan (City)</td><td>1,800</td><td>2,100</td><td>3,500</td></tr>
+                    <tr><td>Uthai Thani (City)</td><td>1,700</td><td>2,000</td><td>3,500</td></tr>
+                    <tr><td>Phitsanulok (City)</td><td>3,300</td><td>3,600</td><td>6,000</td></tr>
+                    <tr><td>Chiang Mai (City)</td><td>6,500</td><td>7,500</td><td>13,000</td></tr>
+                    <tr><td>Udon Thani</td><td>1,700</td><td>2,000</td><td>4,000</td></tr>
+                    <tr><td>Saraburi</td><td>2,500</td><td>2,800</td><td>4,500</td></tr>
+                    <tr><td>Sing Buri</td><td>1,700</td><td>2,000</td><td>3,500</td></tr>
+                </tbody>
+            </table>
+            <p class="mt-4 text-sm"><strong>Note:</strong></p>
+            <ul class="list-disc pl-5 text-sm">
+                <li>Prices for locations near Ayutthaya can be negotiated further.</li>
+                <li>This service is for temple tours and tourist attractions only.</li>
+            </ul>
+        </div>
+
         <!-- Hotel House Rules Section -->
         <div class="house-rules-section w-full max-w-2xl">
             <h3>Baan Luang Harn Hotel Rules</h3>
@@ -387,11 +409,6 @@
         // New button references
         const ayutthayaMapBtn = document.getElementById('ayutthayaMapBtn'); // New button reference
         const ayutthayaGuidebookBtn = document.getElementById('ayutthayaGuidebookBtn'); // New button reference
-
-        // AI Assistant elements
-        const aiQuestionInput = document.getElementById('aiQuestionInput');
-        const askAiBtn = document.getElementById('askAiBtn');
-        const aiResponseBox = document.getElementById('aiResponseBox');
 
         // Coordinates and map links for each location
         const locations = {
@@ -484,49 +501,6 @@
         // Updated Ayutthaya Guidebook Button
         ayutthayaGuidebookBtn.addEventListener('click', () => {
             openExternalLink('https://drive.google.com/file/d/1VsweyITog0F2W7-ZM4rBfDDXmpllaFen/view?usp=drive_link', 'กำลังเปิดคู่มือท่องเที่ยวอยุธยา (PDF)...');
-        });
-
-        // AI Assistant functionality
-        askAiBtn.addEventListener('click', async () => {
-            const prompt = aiQuestionInput.value.trim();
-            if (!prompt) {
-                aiResponseBox.innerHTML = '<p class="text-red-500">Please enter your question.</p>';
-                return;
-            }
-
-            // Show loading indicator
-            aiResponseBox.innerHTML = '<div class="loader"></div><p class="mt-2 text-center">Thinking...</p>';
-            aiQuestionInput.value = ''; // Clear input after sending
-
-            try {
-                let chatHistory = [];
-                // Add a system instruction to guide the AI's responses about Ayutthaya
-                chatHistory.push({ role: "user", parts: [{ text: `You are an AI assistant for Baan Luang Harn Hotel in Ayutthaya, Thailand. Your purpose is to provide helpful and concise information about Ayutthaya, its tourist attractions, local food, transportation, and general tips for visitors. Always respond in Thai, unless the user explicitly asks for English. If you don't know the answer, politely state that you cannot provide that information. Here is the user's question: ${prompt}` }] });
-
-                const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyBWBel5MuL5rhHPQH0rrd_hw6iSPTFcwVM"; // Canvas will provide this
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    aiResponseBox.innerHTML = `<p>${text}</p>`;
-                } else {
-                    aiResponseBox.innerHTML = '<p class="text-red-500">Sorry, I could not get a response from the AI. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error('Error fetching AI response:', error);
-                aiResponseBox.innerHTML = '<p class="text-red-500">An error occurred while connecting to the AI. Please check your internet connection and try again.</p>';
-            }
         });
 
         // Initial message box content
